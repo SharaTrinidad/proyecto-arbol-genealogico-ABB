@@ -1,0 +1,96 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Estructura del nodo
+struct Persona {
+    int anioNacimiento;  
+    string nombre; 
+    Persona* izquierda; 
+    Persona* derecha; 
+};
+
+// Función para crear una nueva persona
+Persona* crearPersona(int anio, string nombre) {
+    Persona* nueva = new Persona; 
+    nueva->anioNacimiento = anio; 
+    nueva->nombre = nombre; 
+    nueva->izquierda = NULL; 
+    nueva->derecha = NULL; 
+    return nueva; 
+}
+
+// Función de Insertacion de Persona 
+void insertarPersona(Persona*& raiz, int anio, string nombre) {
+    if (raiz == NULL) {  
+        raiz = crearPersona(anio, nombre);
+    } else if (anio < raiz->anioNacimiento) { 
+        insertarPersona(raiz->izquierda, anio, nombre);
+    } else if (anio > raiz->anioNacimiento) { // Y si el año es mayor, se inserta a la persona a la derecha, siendo esta más joven.
+        insertarPersona(raiz->derecha, anio, nombre);
+    } else { //Si ya hay alguien con este mismo año, no permitira agregar a esa persona
+        cout << "Ya existe una persona con ese año de nacimiento.\n"; // Y le tira un mensaje de que ya existe ese individuo
+    }
+}
+
+// Función de Busqueda de Persona en el Arbol
+bool buscarPersona(Persona* raiz, int anio) {
+    if (raiz == NULL) {
+    	
+    	return false;
+	}  
+    if (anio == raiz->anioNacimiento){
+    	cout<<"Persona encontrada: "<<raiz->nombre<<"\t("<<raiz->anioNacimiento<<")\n";
+    	return true; 
+	} 
+    else if (anio < raiz->anioNacimiento) return buscarPersona(raiz->izquierda, anio); 
+    else return buscarPersona(raiz->derecha, anio); 
+}
+
+//Eliminacion solo en caso de una hoja:
+void eliminarHoja(Persona*& raiz, int anio) {
+    if (raiz == NULL) return;
+    
+    if (anio < raiz->anioNacimiento) {
+        eliminarHoja(raiz->izquierda, anio);
+    } else if (anio > raiz->anioNacimiento) {
+        eliminarHoja(raiz->derecha, anio);
+    } else {
+        // Solo eliminamos si es hoja
+        if (raiz->izquierda == NULL && raiz->derecha == NULL) {
+            delete raiz;
+            raiz = NULL;
+            cout << "Persona eliminada.\n";
+        } else {
+            cout << "No se puede eliminar, no es una hoja.\n";
+            }
+        }
+    }
+
+
+// Recorrido INORDEN: Funcion de m?s antiguo a m?s reciente
+void inorden(Persona* raiz) {
+    if (raiz != NULL) { 
+        inorden(raiz->izquierda); 
+        cout << raiz->nombre << " \t(" << raiz->anioNacimiento << ")\n"; 
+        inorden(raiz->derecha); 
+    }
+}
+
+// Recorrido PREORDEN: Se usa para jerarquia generacional
+void preorden(Persona* raiz) {
+    if (raiz != NULL) { 
+        cout << raiz->nombre << " \t(" << raiz->anioNacimiento << ")\n"; 
+        preorden(raiz->izquierda);  
+        preorden(raiz->derecha);  
+    }
+}
+
+// Recorrido POSTORDEN: Se usa para eliminaciones
+void postorden(Persona* raiz) {
+    if (raiz != NULL) {
+        postorden(raiz->izquierda);
+        postorden(raiz->derecha); 
+        cout << raiz->nombre << " \t(" << raiz->anioNacimiento << ")\n"; 
+    }
+}
