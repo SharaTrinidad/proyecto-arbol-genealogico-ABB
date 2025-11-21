@@ -1,5 +1,7 @@
 #include <iostream>            // Incluye la biblioteca estándar para entrada/salida (cin, cout).
 #include <string>              // Incluye la clase string para manejar cadenas de texto.
+#include <windows.h>  		  // Permite configurar la consola en Windows
+
 using namespace std;           // Permite usar directamente nombres del espacio std (cout, string, etc.).
 
 // Estructura del nodo
@@ -152,6 +154,7 @@ void menu() { // Imprime las opciones del menú por consola.
 
 
 int main() { // Función principal donde inicia la ejecución del programa.
+	SetConsoleOutputCP(65001); // Habilita UTF-8
     setlocale(LC_CTYPE, "Spanish"); // Configura la localización para mostrar correctamente caracteres especiales en consola.
     Persona* raiz = NULL; // Inicializa la raíz del árbol como NULL (árbol vacío).
     int opcion, anio; // Variables para almacenar la opción del menú y el año ingresado por el usuario.
@@ -209,3 +212,4 @@ int main() { // Función principal donde inicia la ejecución del programa.
 
     return 0; // Retorna 0 al sistema operativo indicando que el programa finalizó correctamente.
 }
+
