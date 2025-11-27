@@ -206,7 +206,7 @@ void mostrarJerarquia(Persona* raiz, int nivel = 0) {   // Imprime árbol de for
 
  // Menú en consola
 void menu() {                                      // Imprime el menú de opciones
-    cout << "\n--- Árbol Genealógico (ABB) ---\n";
+    cout << "\n--- Árbol (ABB) ---\n";
     cout << "1. Insertar persona\n";
     cout << "2. Buscar persona\n";
     cout << "3. Eliminar persona\n";
@@ -302,3 +302,4 @@ int main() {                                       // Función principal del pro
 
     return 0;                                       // Fin del programa
 }
+
