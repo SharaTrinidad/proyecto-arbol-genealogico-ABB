@@ -14,7 +14,7 @@ struct Persona {                    // Define la estructura Persona que será ca
 
  // ============ FUNCIÓN DE VALIDACIÓN  ============
 
- // Valida que la fecha sea correcta
+// Valida que la fecha sea correcta
 bool validarFecha(int dia, int mes, int anio) {          // Función que valida una fecha completa
     if (anio < 0 || anio > 2025) {                       // Valida que el año esté dentro del rango permitido
         cout << "Año inválido. Debe estar entre 0 y 2025.\n";   // Mensaje de error
@@ -37,7 +37,7 @@ bool validarFecha(int dia, int mes, int anio) {          // Función que valida 
     return true;                                         // Retorna verdadero si la fecha es válida
 }
 
- // Valida que el nombre no esté vacío
+// Valida que el nombre no esté vacío
 bool validarNombre(string nombre) {                      // Función que verifica si el nombre tiene contenido
     if (nombre.empty()) {                                // Comprueba si está vacío
         cout << "El nombre no puede estar vacío.\n";     // Mensaje de error
@@ -46,9 +46,9 @@ bool validarNombre(string nombre) {                      // Función que verific
     return true;                                         // Retorna verdadero si el nombre no está vacío
 }
 
- // ============================================================
+// ============================================================
 
- // Función para crear una nueva persona con día, mes y año
+// Función para crear una nueva persona con día, mes y año
 Persona* crearPersona(int dia, int mes, int anio, string nombre) {   // Crea un nodo Persona con datos
     Persona* nueva = new Persona;                    // Reserva memoria para el nuevo nodo
     nueva->diaNacimiento = dia;                      // Asigna el día
@@ -60,7 +60,7 @@ Persona* crearPersona(int dia, int mes, int anio, string nombre) {   // Crea un 
     return nueva;                                    // Retorna el nodo creado
 }
 
- // Función de Inserción de Persona con fecha completa
+// Función de Inserción de Persona con fecha completa
 void insertarPersona(Persona*& raiz, int dia, int mes, int anio, string nombre) {   // Inserta una persona en el ABB
     if (raiz == NULL) {                           // Caso base: si el árbol está vacío
         raiz = crearPersona(dia, mes, anio, nombre);   // Crea el nodo como raíz
@@ -77,7 +77,7 @@ void insertarPersona(Persona*& raiz, int dia, int mes, int anio, string nombre) 
     }
 }
 
- // Función de Búsqueda de Persona en el Árbol (con fecha completa)
+// Función de Búsqueda de Persona en el Árbol (con fecha completa)
 bool buscarPersona(Persona* raiz, int dia, int mes, int anio) {     // Busca un nodo por fecha completa
     if (raiz == NULL) {                          // Si el árbol está vacío o no se encontró
         return false;                            // Retorna falso
@@ -95,7 +95,7 @@ bool buscarPersona(Persona* raiz, int dia, int mes, int anio) {     // Busca un 
     }
 }
 
- // Busca el nodo con el valor menor dentro de un subárbol
+// Busca el nodo con el valor menor dentro de un subárbol
 Persona* encontrarMinimo(Persona* nodo) {         // Encuentra el nodo más pequeño (más antiguo)
     if (nodo == NULL) {                           // Si no existe nodo
         return NULL;                              // Retorna NULL
@@ -105,7 +105,7 @@ Persona* encontrarMinimo(Persona* nodo) {         // Encuentra el nodo más pequ
     return nodo;                                  // Retorna el nodo mínimo
 }
 
- // Elimina a una persona del árbol según año, mes y día
+// Elimina a una persona del árbol según año, mes y día
 Persona* eliminarPersona(Persona* raiz, int dia, int mes, int anio) {   // Elimina un nodo del ABB
     if (raiz == NULL) {                          // Si el árbol está vacío o no se encontró la persona
         cout << "No se encontró la persona\n";   // Mensaje de error
@@ -163,7 +163,7 @@ Persona* eliminarPersona(Persona* raiz, int dia, int mes, int anio) {   // Elimi
     return raiz;                                    // Retorna el nodo actualizado
 }
 
- // Recorrido INORDEN: Imprime de más antiguo a más reciente
+// Recorrido INORDEN: Imprime de más antiguo a más reciente
 void inorden(Persona* raiz) {                       // Función de recorrido inorden
     if (raiz != NULL) {                             // Si el nodo no es nulo
         inorden(raiz->izquierda);                   // Recorre subárbol izquierdo
@@ -173,7 +173,7 @@ void inorden(Persona* raiz) {                       // Función de recorrido ino
     }
 }
 
- // Recorrido PREORDEN: útil para mostrar jerarquía
+// Recorrido PREORDEN: útil para mostrar jerarquía
 void preorden(Persona* raiz) {                      // Función de recorrido preorden
     if (raiz != NULL) {                             // Si el nodo no es nulo
         cout << raiz->nombre << " \t(" << raiz->diaNacimiento << "/" << raiz->mesNacimiento << "/"
@@ -183,7 +183,7 @@ void preorden(Persona* raiz) {                      // Función de recorrido pre
     }
 }
 
- // Recorrido POSTORDEN: útil para procesos de eliminación
+// Recorrido POSTORDEN: útil para procesos de eliminación
 void postorden(Persona* raiz) {                     // Función de recorrido postorden
     if (raiz != NULL) {                             // Si el nodo no es nulo
         postorden(raiz->izquierda);                 // Recorre subárbol izquierdo
@@ -193,7 +193,7 @@ void postorden(Persona* raiz) {                     // Función de recorrido pos
     }
 }
 
- // Mostrar jerarquía de forma visual
+// Mostrar jerarquía de forma visual
 void mostrarJerarquia(Persona* raiz, int nivel = 0) {   // Imprime árbol de forma gráfica
     if (raiz != NULL) {                                 // Si el nodo existe
         mostrarJerarquia(raiz->derecha, nivel + 1);     // Muestra subárbol derecho con más indentación
@@ -204,7 +204,7 @@ void mostrarJerarquia(Persona* raiz, int nivel = 0) {   // Imprime árbol de for
     }
 }
 
- // Menú en consola
+// Menú en consola
 void menu() {                                      // Imprime el menú de opciones
     cout << "\n--- Árbol (ABB) ---\n";
     cout << "1. Insertar persona\n";
@@ -263,11 +263,39 @@ int main() {                                       // Función principal del pro
                 break;
 
             case 2:                                  // Buscar persona
-                // Similar al código de inserción
+                cout << "Ingrese día de nacimiento: ";
+                cin >> dia;
+                
+                cout << "Ingrese mes de nacimiento: ";
+                cin >> mes;
+                
+                cout << "Ingrese año de nacimiento: ";
+                cin >> anio;
+                
+                if (!validarFecha(dia, mes, anio)) {
+                    break;
+                }
+                
+                if (!buscarPersona(raiz, dia, mes, anio)) {
+                    cout << "Persona no encontrada.\n";
+                }
                 break;
 
             case 3:                                  // Eliminar persona
-                // Similar al código de inserción
+                cout << "Ingrese día de nacimiento: ";
+                cin >> dia;
+                
+                cout << "Ingrese mes de nacimiento: ";
+                cin >> mes;
+                
+                cout << "Ingrese año de nacimiento: ";
+                cin >> anio;
+                
+                if (!validarFecha(dia, mes, anio)) {
+                    break;
+                }
+                
+                raiz = eliminarPersona(raiz, dia, mes, anio);
                 break;
 
             case 4:                                  // Mostrar inorden
@@ -302,4 +330,3 @@ int main() {                                       // Función principal del pro
 
     return 0;                                       // Fin del programa
 }
-
